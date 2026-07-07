@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { AuthContext } from "../../../features/auth/types/AuthContext";
-import { useCheckAuth } from "../../../features/auth/hooks/useCheckAuth";
+import { AuthContext, useCheckAuth} from '@features/auth'
 
 interface AuthProviderProps {
     children: ReactNode;
