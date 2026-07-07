@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { storage } from '@shared';
 
 export const useCheckAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-        return !!localStorage.getItem('token');
+        return !!storage.getToken();
     });
 
 
