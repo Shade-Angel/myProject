@@ -1,8 +1,8 @@
 export { AuthProvider } from "./AuthProvider";
 
-export { useAuth } from "./hooks/useAuth";
-export { useCheckAuth } from "./hooks/useCheckAuth";
+export { useAuth } from "../../../features/auth/hooks/useAuth";
+export { useCheckAuth } from "../../../features/auth/hooks/useCheckAuth";
 
-export type { IAuthType } from "./types/auth-provider.interface";
+export type { IAuthType } from "../../../features/auth/types/auth-provider.interface";
 
-export { AuthContext } from "./context/AuthContext";
+export { AuthContext } from "../../../features/auth/types/AuthContext";
