@@ -1,37 +1,49 @@
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { Badge, Box, IconButton, InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { Link } from "react-router-dom";
+import styles from './Header.module.css';
+
 export const Header = () => {
     return (
-        <header style={{
-            background: '#4a76a8',
-            color: 'white',
-            padding: '10px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-        }}>
-            <div style={{
-                fontSize: '20px',
-                fontWeight: 'bold',
-            }}>
-                Аналог ВКонтакте
-            </div>
-            <input
-                type="textt"
-                placeholder="Поиск"
-                style={{
-                    padding: '5px 10px',
-                    borderRadius: '15px',
-                    border: 'none',
-                    width: '300px'
-                }}
-            />
-            <div style={{
-                display: 'flex',
-                gap: '15px',
-                alignItems: 'center'
-            }}>
-                <span>Уведомления</span>
-                <span>Профиль</span>
-            </div>
-        </header>
+        <AppBar
+            position="static"
+            className={styles.header}
+        >
+            <Toolbar className={styles.toolbar}>
+                <Typography
+                    variant="h6"
+                    component={Link}
+                    to='/'
+                    className={styles.logo}
+                >
+                    Аналог ВКонтакте
+                </Typography>
+
+                <Box
+                    className={styles.searchBox}
+                >
+                    <SearchIcon sx={{
+                        color: 'white',
+                        mr: 1,
+                    }}/>
+                    <InputBase 
+                        placeholder="Поиск"
+                        className={styles.searchInput}
+                    />
+                </Box>
+
+                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                    <IconButton className={styles.notificationsButton}>
+                        <Badge badgeContent={3} color="error">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
