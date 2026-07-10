@@ -1,11 +1,11 @@
-import { LoginForma } from "@features/auth/ui/LoginForm";
+import { LoginForm } from "@features/auth";
 import { Box, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 export const LoginPage = () => {
     return (
         <Box>
-            <LoginForma />
+            <LoginForm />
             <Box sx={{ mt:2, textAlign: 'center'}}>
                 <Typography variant="body2" color="text.secondary">
                     Нет аккаунта?{' '}

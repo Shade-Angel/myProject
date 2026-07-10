@@ -5,7 +5,7 @@ import { MessagesPage } from "@pages/messages";
 import { NotFoundPage } from "@pages/not-found";
 import { ProfilePage } from "@pages/profile";
 import { RegisterPage } from "@pages/register";
-import { ProtectedRoute } from "@shared";
+import { ProtectedRoute } from "./ProtectedRoute";
 import { Layout } from "@widgets/layout/ui/Layout";
 import { Route, Routes } from "react-router-dom";
 

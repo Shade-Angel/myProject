@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '../hooks/useAuth';
 import { useState } from 'react';
-import { $api, storage } from '@shared';
+import { $api } from '@shared';
 import { Alert, Box, Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export const LoginForma = () => {
+export const LoginForm = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
     const [error, setError] = useState<string | null>(null);
@@ -35,7 +35,6 @@ export const LoginForma = () => {
 
             const { token } = response.data;
 
-            storage.setToken(token);
             login(token);
 
             navigate('/');
