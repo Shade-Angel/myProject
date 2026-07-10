@@ -1,4 +1,4 @@
-import { storage } from '@shared/lib/storage';
+import { storage } from '@shared';
 import axios from 'axios';
 
 export const $api = axios.create({
