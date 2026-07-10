@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../model';
 import { useState } from 'react';
 import { $api } from '@shared';
 import { Alert, Box, Button, TextField, Typography } from '@mui/material';
