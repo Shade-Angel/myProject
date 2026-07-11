@@ -6,7 +6,7 @@ import { NotFoundPage } from "@pages/not-found";
 import { ProfilePage } from "@pages/profile";
 import { RegisterPage } from "@pages/register";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { Layout } from "@app/ui/Layout";
+import { Layout } from "@app";
 import { Route, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
