@@ -51,7 +51,7 @@ export const useCheckAuth = () => {
                 dispatch({ type: 'SET_USER', payload: response.data });
                 dispatch({ type: 'SET_AUTH', payload: true });
             } catch (error) {
-                console.error('Auth check failed:', error);
+                console.error(error);
                 storage.removeToken(); 
                 dispatch({ type: 'SET_USER', payload: null });
                 dispatch({ type: 'SET_AUTH', payload: false });
