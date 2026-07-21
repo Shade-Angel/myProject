@@ -23,6 +23,13 @@ export const AppRouter = () => {
                 <Route path="/friends" element={<ProtectedRoute><FriendsPage /></ProtectedRoute>} />
                 <Route path="/messages" element={<ProtectedRoute><MessagesPage /></ProtectedRoute>} />
             </Route>
+            {/* <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/:id" element={<ProfilePage />} />
+                <Route path="/friends" element={<FriendsPage />} />
+                <Route path="/messages" element={<MessagesPage />} />
+            </Route> */}
 
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
