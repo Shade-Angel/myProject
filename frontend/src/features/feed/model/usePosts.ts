@@ -14,7 +14,8 @@ type Action =
     | { type: 'FETCH_ERROR'; payload: string }
     | { type: 'RESET'; }
     | { type: 'ADD_POST'; payload: IPost }
-    | { type: 'REMOVE_POST'; payload: number };
+    | { type: 'REMOVE_POST'; payload: number }
+    | { type: 'LIKE_POST'; payload: { postId: number, isLiked: boolean }};
 
 
 const postsReducer = (state: State, action: Action): State => {
@@ -31,6 +32,19 @@ const postsReducer = (state: State, action: Action): State => {
             return {...state, posts: [action.payload, ...state.posts]};
         case 'REMOVE_POST':
             return {...state, posts: state.posts.filter((p) => p.id !== action.payload)};
+        case 'LIKE_POST':
+            return {
+                ...state,
+                posts: state.posts.map((p) =>
+                    p.id === action.payload.postId
+                        ? {
+                            ...p,
+                            isLiked: action.payload.isLiked,
+                            likesCount: (p.likesCount || 0) + (action.payload.isLiked ? 1 : -1),
+                        }
+                        : p
+                ),
+            };
         default:
             return state;
     }
@@ -63,11 +77,7 @@ export const usePosts = () => {
                 const message = err instanceof Error ? err.message: 'Неизвестная ошибка!';
                 dispatch({ type: 'FETCH_ERROR', payload: `Не удалось загрузить посты: ${message}` });
             }
-        } finally {
-            if(isCancellRef.current) {
-                dispatch({ type: 'FETCH_ERROR', payload: 'Запрос о постах отменён!' });
-            }
-        }
+        } 
     }, []);
 
 
@@ -95,6 +105,21 @@ export const usePosts = () => {
         dispatch({ type: 'REMOVE_POST', payload: postId });
     }, []);
 
+    const likePost = useCallback(async (postId: number) => {
+        const post = state.posts.find((p) => p.id === postId);
+        if(!post){
+            return;
+        }
+        const newIsLiked = !(post.isLiked ?? false);
+        dispatch({ type: 'LIKE_POST', payload: { postId, isLiked: newIsLiked}});
+        try{
+            await postApi.likePost(postId);
+        } catch(error){
+            dispatch({ type: 'LIKE_POST', payload: { postId, isLiked: post.isLiked ?? false}});
+            console.error('Ошибка при лайке поста: ', error);
+        }
+    }, [state.posts]);
+
 
     return {
         posts: state.posts,
@@ -103,6 +128,7 @@ export const usePosts = () => {
         refetch: fetchPosts,
         addPost,
         removePost,
+        likePost,
     };
 };
     

@@ -2,13 +2,13 @@ import { useAuth } from '@features/auth';
 import { postApi, type IPost } from '@entities/post';
 import { usePosts } from '../model/usePosts';
 import { Avatar, Box, Divider, IconButton, Typography } from '@mui/material';
-import { Chat, Delete, Favorite } from '@mui/icons-material';
+import { Chat, Delete, Favorite, FavoriteBorder } from '@mui/icons-material';
 import { formatRelativeTime } from '@shared';
 
 
 export const PostCard = ({ post }: { post: IPost }) => {
     const { user } = useAuth();
-    const { removePost } = usePosts();
+    const { removePost, likePost } = usePosts();
 
     const handleDelete = async () => {
         try {
@@ -17,6 +17,10 @@ export const PostCard = ({ post }: { post: IPost }) => {
         } catch (error) {
             console.error('Ошибка при удалении поста: ', error);
         }
+    };
+
+    const handleLike = () => {
+        likePost(post.id);
     };
 
     return (
@@ -74,6 +78,25 @@ export const PostCard = ({ post }: { post: IPost }) => {
             <Divider sx={{ my: 1 }} />
 
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center'}}>
+                    <IconButton
+                        onClick={handleLike}
+                        color={post.isLiked ? 'error': 'default'}
+                    >
+                        {post.isLiked ? (
+                            <Favorite fontSize='small' />
+                        ) : (
+                            <FavoriteBorder fontSize='small' />
+                        )}
+                    </IconButton>
+                    <Typography
+                        variant='body2'
+                        color={post.isLiked ? 'error': 'text.secondary'}
+                        sx={{ fontWeight: post.isLiked ? 600 : 400 }}
+                    >
+                        {post.isLiked || 0}
+                    </Typography>
+                </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <IconButton color='primary'>
                         <Favorite fontSize='small' />

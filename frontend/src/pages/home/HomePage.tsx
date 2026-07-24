@@ -3,6 +3,7 @@ import { Feed, usePosts } from "@features/feed";
 import { postApi } from "@entities/post";
 import { Box, Button, Card, CardContent, Grid, TextField, Typography, Alert } from "@mui/material";
 import { useState, useRef } from "react";
+import { AddPhotoAlternate } from "@mui/icons-material";
 
 export const HomePage = () => {
     const { user } = useAuth();
@@ -118,7 +119,7 @@ export const HomePage = () => {
                                         <Button 
                                             variant="outlined" 
                                             component="span"
-                                            startIcon={<span></span>}
+                                            startIcon={<AddPhotoAlternate />}
                                             sx={{ textTransform: 'none' }}
                                         >
                                             Фото
