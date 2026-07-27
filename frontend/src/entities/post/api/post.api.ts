@@ -1,6 +1,5 @@
 import { $api } from "@shared";
 import type { IPost } from "../model/types";
-// import { data } from "react-router-dom";
 
 interface IPostRawResponse {
     id: number;
@@ -42,6 +41,11 @@ export const postApi = {
         const response = await $api.post<IPostRawResponse>('/posts', formData);
         // return { ...response, data: mapPostResponse(response.data) };
         return { data: mapPostResponse(response.data) };
+    },
+
+    getUserPost: async (userId: string) => {
+        const response = await $api.post<IPostRawResponse[]>(`/posts/user/${userId}`);
+        return {...response, data: response.data.map(mapPostResponse) };
     },
     
     likePost: (postId: number) => $api.post(`/posts/${postId}/like`),
