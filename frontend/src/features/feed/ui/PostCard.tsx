@@ -46,7 +46,7 @@ export const PostCard = ({ post }: { post: IPost }) => {
                         onClick={handleDelete}
                         sx={{ ml: "auto" }}
                         color="error"
-                        disabled={deleteMutation.isPending} // Блокируем кнопку во время удаления
+                        disabled={deleteMutation.isPending} 
                     >
                         <Delete fontSize="small" />
                     </IconButton>

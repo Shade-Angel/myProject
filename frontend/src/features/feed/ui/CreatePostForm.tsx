@@ -8,7 +8,7 @@ import { Alert, Box, Button, Card, CardContent, TextField, Typography } from "@m
 import { AddPhotoAlternate } from "@mui/icons-material";
 
 const postSchema = z.object({
-    content: z.string().min(1, "Пост не может быть пустым").max(500, "Максимум 500 символов"),
+    content: z.string().min(1, "Пост не может быть пустым").max(10000, "Максимум 10000 символов"),
 });
 
 type PostFormData = z.infer<typeof postSchema>;
@@ -147,7 +147,7 @@ export const CreatePostForm = () => {
                             disabled={createPostMutation.isPending}
                             sx={{ textTransform: "none", px: 4 }}
                         >
-                            {createPostMutation.isPending ? "Публикация..." : "Опубликовать"}
+                            {createPostMutation.isPending ? "Публикация" : "Опубликовать"}
                         </Button>
                     </Box>
                 </form>
